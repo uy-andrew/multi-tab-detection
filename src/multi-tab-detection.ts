@@ -34,8 +34,41 @@ export class MultiTabDetection {
   }
 
   private addListener(): void {
-    window.addEventListener('storage', this.onLocalStorageEvent, false);
-    window.addEventListener('beforeunload', this.onBeforeUnloadEvent, false);
+    const thisInstance = this;
+
+    window.addEventListener(
+      'storage',
+      (ev: StorageEvent) => {
+        if (ev.key === thisInstance.newTabKey) {
+          thisInstance.incrementNumberOfTabsOpened();
+          thisInstance.NewTabDetectedEvent.next(thisInstance.numberOfTabsOpened);
+          thisInstance.setKey(thisInstance.existingTabKey);
+        } else if (ev.key === thisInstance.existingTabKey) {
+          // only process the event if this is the new tab that has been opened
+          const newTabValue = thisInstance.getLocalStorageValue(thisInstance.newTabKey);
+          if (newTabValue === thisInstance.newTabValue) {
+            if (thisInstance.initiatedNewTabMessage) {
+              thisInstance.initiatedNewTabMessage = false;
+              thisInstance.numberOfTabsOpened = 1;
+              thisInstance.ExistingTabDetectedEvent.next();
+            }
+
+            thisInstance.incrementNumberOfTabsOpened();
+          }
+        } else if (ev.key === thisInstance.closingTabKey) {
+          thisInstance.decrementNumberOfTabsOpened();
+        }
+      },
+      false,
+    );
+
+    window.addEventListener(
+      'beforeunload',
+      (ev: BeforeUnloadEvent) => {
+        thisInstance.setKey(thisInstance.closingTabKey);
+      },
+      false,
+    );
   }
 
   private setNewTab(): void {
@@ -63,33 +96,6 @@ export class MultiTabDetection {
 
   private decrementNumberOfTabsOpened() {
     this.numberOfTabsOpened--;
-  }
-
-  // event handlers
-  private onLocalStorageEvent(ev: StorageEvent) {
-    if (ev.newValue === this.newTabKey) {
-      this.incrementNumberOfTabsOpened();
-      this.NewTabDetectedEvent.next(this.numberOfTabsOpened);
-      this.setKey(this.existingTabKey);
-    } else if (ev.newValue === this.existingTabKey) {
-      // only process the event if this is the new tab that has been opened
-      const newTabValue = this.getLocalStorageValue(this.newTabKey);
-      if (newTabValue === this.newTabValue) {
-        if (this.initiatedNewTabMessage) {
-          this.initiatedNewTabMessage = false;
-          this.numberOfTabsOpened = 1;
-          this.ExistingTabDetectedEvent.next();
-        }
-
-        this.incrementNumberOfTabsOpened();
-      }
-    } else if (ev.newValue === this.closingTabKey) {
-      this.decrementNumberOfTabsOpened();
-    }
-  }
-
-  private onBeforeUnloadEvent(ev: BeforeUnloadEvent) {
-    this.setKey(this.closingTabKey);
   }
 
   // local storage methods
