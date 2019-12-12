@@ -36,9 +36,24 @@ var multiTabDetection = new MultiTabDetection();
 *ExistingTabDetectedEvent*
 > Informs the listener that an existing tab existed for the same browser session.
 
+*ClosedTabDetectedEvent*
+> Informs the listener that a tab for the same browser session has been closed. It also pass in the updated total number of tabs opened for the same browser session.
+
 ### Properties
 *NumberOfTabsOpened*
 > Gets the total number of tabs opened. It is recommended to wait for 1 second after receiving existingTabDetectedEvent before calling this property to get the accurate total number of tabs opened.
+
+## Sample Implementation
+You can find sample implementation of this node module in [**multi-tab-detection-samples**](https://github.com/uy-andrew/multi-tab-detection-samples).
+
+## Versions
+Version | Release Notes
+------- | -------------
+1.1.0   | Fix issue where sometimes it does not count properly the correct total number of tabs opened in succeeding tabs. 
+1.0.3   | Fix number of tabs opened count not working **(Non-Working Version)**
+1.0.2   | Downgrading the typescript so that it can be compatible with Angular 8 application **(Non-Working Version)** 
+1.0.1   | Fix the README not showing properly in npmjs website **(Non-Working Version)**
+1.0.0   | Initial Commit **(Non-Working Version)**
 
 ## Author
 [**Andrew Uy**](https://github.com/uy-andrew)

@@ -12,6 +12,12 @@ export class MultiTabDetection {
    */
   public ExistingTabDetectedEvent: Subject<void> = new Subject<void>();
 
+  /**
+   * @description Informs the listener that a tab for the same browser session has been closed.
+   * It also pass in the updated total number of tabs opened for the same browser session.
+   */
+  public ClosedTabDetectedEvent: Subject<number> = new Subject<number>();
+
   private prefix: string = 'mtd-';
   private initiatedNewTabMessage: boolean = false;
   private numberOfTabsOpened: number = 1;
@@ -57,6 +63,7 @@ export class MultiTabDetection {
           }
         } else if (ev.key === thisInstance.closingTabKey) {
           thisInstance.decrementNumberOfTabsOpened();
+          thisInstance.ClosedTabDetectedEvent.next(thisInstance.numberOfTabsOpened);
         }
       },
       false,
@@ -117,6 +124,13 @@ export class MultiTabDetection {
   }
 
   private createUniqueValue(): string {
-    return Date.now().toString();
+    const randomString =
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15);
+    return Date.now().toString() + randomString;
   }
 }
