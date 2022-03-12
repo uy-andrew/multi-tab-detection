@@ -104,7 +104,7 @@ export class MultiTabDetection {
   private decrementNumberOfTabsOpened() {
     if (this.numberOfTabsOpened > 0) {
       this.numberOfTabsOpened--;
-    } 
+    }
   }
 
   // local storage methods
