@@ -49,6 +49,7 @@ You can find sample implementation of this node module in [**multi-tab-detection
 ## Versions
 Version | Release Notes
 ------- | -------------
+1.1.2   | Update packages used by the library based on security advise from GitHub dependabot. Fix https://github.com/uy-andrew/multi-tab-detection/issues/9.
 1.1.1   | Update packages used by the library based on security advise from GitHub dependabot.
 1.1.0   | Fix issue where sometimes it does not count properly the correct total number of tabs opened in succeeding tabs. 
 1.0.3   | Fix number of tabs opened count not working **(Non-Working Version)**
