@@ -1,7 +1,11 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { MultiTabDetection } from '../multi-tab-detection';
 
 describe('MultiTabDetection during initialization', () => {
-  let multiTabDetection = null;
+  let multiTabDetection: MultiTabDetection | null = null;
 
   beforeAll(() => {
     // remove any existing local storage items
@@ -11,7 +15,7 @@ describe('MultiTabDetection during initialization', () => {
   });
 
   test('Number of tabs opened to be one', () => {
-    expect(multiTabDetection.NumberOfTabsOpened).toBe(1);
+    expect(multiTabDetection!.NumberOfTabsOpened).toBe(1);
   });
 
   test('New tab item should exist', () => {
