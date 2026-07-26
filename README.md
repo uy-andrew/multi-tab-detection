@@ -67,7 +67,7 @@ You can find sample implementation of this node module in [**multi-tab-detection
 
 | Version | Release Notes                                                                                                                                       |
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.1.5   | Update dependencies in the package and in the README.                                                                                               |
+| 1.1.5   | Update dependencies in the package and in the README. Update packages used by the library based on security advise from Github dependabot.          |
 | 1.1.4   | Update packages used by the library based on security advise from Github dependabot. Update tests based on the updated library requirements.        |
 | 1.1.3   | Update packages used by the library based on security advise from GitHub dependabot.                                                                |
 | 1.1.2   | Update packages used by the library based on security advise from GitHub dependabot. Fix https://github.com/uy-andrew/multi-tab-detection/issues/9. |
