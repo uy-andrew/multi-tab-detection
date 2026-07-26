@@ -126,7 +126,13 @@ export class MultiTabDetection {
   }
 
   private createUniqueValue(): string {
-    const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    const randomString =
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15);
     return Date.now().toString() + randomString;
   }
 }
