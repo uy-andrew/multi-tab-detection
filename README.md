@@ -29,6 +29,10 @@ The idea behind this multi tab detection is based on the [stack overflow answer]
 - Subscribe to either or both **NewTabDetectedEvent** and/or **ExistingTabDetectedEvent**.
 - You can also call the method **NumberOfTabsOpened** to get the number of tabs opened.
 
+## Dependencies
+
+This library depends on RxJS at runtime. When you install the package, npm will also install RxJS automatically.
+
 ## API
 
 ### Constructor
@@ -63,7 +67,8 @@ You can find sample implementation of this node module in [**multi-tab-detection
 
 | Version | Release Notes                                                                                                                                       |
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.1.4   | Update packages used by the library based on security advise from Github dependabot. Update tests based on the updated library requirements.        | 
+| 1.1.5   | Update dependencies in the package and in the README.                                                                                               |
+| 1.1.4   | Update packages used by the library based on security advise from Github dependabot. Update tests based on the updated library requirements.        |
 | 1.1.3   | Update packages used by the library based on security advise from GitHub dependabot.                                                                |
 | 1.1.2   | Update packages used by the library based on security advise from GitHub dependabot. Fix https://github.com/uy-andrew/multi-tab-detection/issues/9. |
 | 1.1.1   | Update packages used by the library based on security advise from GitHub dependabot.                                                                |
